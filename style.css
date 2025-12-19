@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -14,12 +15,13 @@ html {
 body {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
-  height: 100vh;
+  min-height: 100vh;
   color: #333;
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
 }
 
 /* LAYOUT */
@@ -29,13 +31,13 @@ main {
   height: 60rem;
   background-color: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(200px);
-  filter: blur();
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
   border-radius: 9px;
   overflow: hidden;
   display: flex;
 }
 
+/* PLAYER */
 .player {
   flex: 50%;
   padding: 9rem;
@@ -45,9 +47,7 @@ main {
   transition: all 0.75s;
 }
 
-/* ELEMENTS */
 .name {
-  position: relative;
   font-size: 4rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -66,15 +66,13 @@ main {
 .player--active {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
 .player--active .name {
   font-weight: 700;
 }
+
 .player--active .score {
   font-weight: 400;
-}
-
-.player--active .current {
-  opacity: 1;
 }
 
 .current {
@@ -99,42 +97,44 @@ main {
   font-size: 3.5rem;
 }
 
-/* ABSOLUTE POSITIONED ELEMENTS */
+.player--active .current {
+  opacity: 1;
+}
+
+/* BUTTONS */
 .btn {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   color: #444;
-  background: none;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
   border: none;
   font-family: inherit;
   font-size: 1.8rem;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 400;
-  transition: all 0.2s;
-
-  background-color: white;
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-
   padding: 0.7rem 2.5rem;
   border-radius: 50rem;
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  touch-action: manipulation;
 }
 
 .btn::first-letter {
   font-size: 2.4rem;
-  display: inline-block;
   margin-right: 0.7rem;
 }
 
 .btn--new {
   top: 4rem;
 }
+
 .btn--roll {
   top: 39.3rem;
 }
+
 .btn--hold {
   top: 46.1rem;
 }
@@ -148,6 +148,7 @@ main {
   outline: none;
 }
 
+/* DICE */
 .dice {
   position: absolute;
   left: 50%;
@@ -157,6 +158,7 @@ main {
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
 }
 
+/* WINNER */
 .player--winner {
   background-color: #2f2f2f;
 }
@@ -168,4 +170,70 @@ main {
 
 .hidden {
   display: none;
+}
+
+/* =========================
+   MOBILE RESPONSIVE STYLES
+   ========================= */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 55%;
+  }
+
+  main {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .player {
+    padding: 4rem 2rem;
+  }
+
+  .name {
+    font-size: 3rem;
+  }
+
+  .score {
+    font-size: 6rem;
+  }
+
+  .current {
+    width: 85%;
+    padding: 1.5rem;
+  }
+
+  .current-score {
+    font-size: 3rem;
+  }
+
+  /* Dice becomes inline */
+  .dice {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 2rem auto;
+    height: 8rem;
+  }
+
+  /* Buttons stacked */
+  .btn {
+    position: relative;
+    left: auto;
+    transform: none;
+    display: block;
+    width: 85%;
+    margin: 1rem auto;
+    font-size: 2rem;
+    padding: 1.2rem;
+  }
+
+  .btn--new,
+  .btn--roll,
+  .btn--hold {
+    top: auto;
+  }
 }
